@@ -1,0 +1,479 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/3/2025 1:11:32 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="AJL05"
+  DTS:CreatorName="AJL05\mario"
+  DTS:DTSID="{8B0E2DB2-07E4-4BAD-8D44-2C7CB48480E8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="16.0.5685.2"
+  DTS:LocaleID="18442"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{113E75DF-1F30-4EFC-9A72-F3B945C0E966}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AJL05\MSSQLSERVER01.Universidad_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D8F3ACCD-6943-43C1-B302-22114FD45A8E}"
+      DTS:ObjectName="AJL05\MSSQLSERVER01.Universidad_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=AJL05\MSSQLSERVER01;Initial Catalog=Universidad_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{D8F3ACCD-6943-43C1-B302-22114FD45A8E}AJL05\MSSQLSERVER01.Universidad_DWH;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[AJL05\MSSQLSERVER01.Universidad_Staging]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{34B1D0A4-C891-4D01-9BEE-C27A0B320397}"
+      DTS:ObjectName="AJL05\MSSQLSERVER01.Universidad_Staging">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=AJL05\MSSQLSERVER01;Initial Catalog=Universidad_Staging;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{34B1D0A4-C891-4D01-9BEE-C27A0B320397}AJL05\MSSQLSERVER01.Universidad_Staging;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Carga Dim_Horario"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{69EFBC70-5DFA-42E6-8E92-694AD38BBA66}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Carga Dim_Horario"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\Carga Dim_Horario\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[Dim_Horario]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Dim_Horario\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AJL05\MSSQLSERVER01.Universidad_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[AJL05\MSSQLSERVER01.Universidad_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id_horario]"
+                      cachedDataType="i4"
+                      cachedName="id_horario"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id_horario]"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_horario]" />
+                    <inputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[hora_inicio]"
+                      cachedDataType="dbTime2"
+                      cachedName="hora_inicio"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[hora_inicio]"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[hora_inicio]" />
+                    <inputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[hora_fin]"
+                      cachedDataType="dbTime2"
+                      cachedName="hora_fin"
+                      cachedScale="7"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[hora_fin]"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[hora_fin]" />
+                    <inputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[turno]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="turno"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[turno]"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[turno]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[id_horario]"
+                      dataType="i4"
+                      name="id_horario" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[hora_inicio]"
+                      dataType="dbTime2"
+                      name="hora_inicio"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[hora_fin]"
+                      dataType="dbTime2"
+                      name="hora_fin"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[turno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="turno" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Carga Dim_Horario\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Carga Dim_Horario\OLE DB Source"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="OLE DB Source"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+    h.id_horario,
+    h.hora_inicio,
+    h.hora_fin,
+    h.turno
+FROM Horario h</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Carga Dim_Horario\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[AJL05\MSSQLSERVER01.Universidad_Staging]"
+                  connectionManagerRefId="Package.ConnectionManagers[AJL05\MSSQLSERVER01.Universidad_Staging]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_horario]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_horario]"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[id_horario]"
+                      name="id_horario"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[hora_inicio]"
+                      dataType="dbTime2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hora_inicio]"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[hora_inicio]"
+                      name="hora_inicio"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[hora_fin]"
+                      dataType="dbTime2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hora_fin]"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[hora_fin]"
+                      name="hora_fin"
+                      scale="7"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[turno]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[turno]"
+                      length="20"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].Columns[turno]"
+                      name="turno"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id_horario]"
+                      dataType="i4"
+                      name="id_horario" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hora_inicio]"
+                      dataType="dbTime2"
+                      name="hora_inicio"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[hora_fin]"
+                      dataType="dbTime2"
+                      name="hora_fin"
+                      scale="7" />
+                    <externalMetadataColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[turno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="turno" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_horario]"
+                      dataType="i4"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id_horario]"
+                      name="id_horario" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hora_inicio]"
+                      dataType="dbTime2"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hora_inicio]"
+                      name="hora_inicio"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hora_fin]"
+                      dataType="dbTime2"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[hora_fin]"
+                      name="hora_fin"
+                      scale="7" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[turno]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[turno]"
+                      name="turno" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\Carga Dim_Horario.Paths[OLE DB Source Output]"
+              endId="Package\Carga Dim_Horario\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\Carga Dim_Horario\OLE DB Source.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
+<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
+<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<Objects
+  Version="8">
+  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="168,41.6"
+          Id="Package\Carga Dim_Horario"
+          TopLeft="280.833317989277,207.133331892954" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Carga Dim_Horario">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,41.6"
+          Id="Package\Carga Dim_Horario\OLE DB Source"
+          TopLeft="291.666650730703,150.799998951356" />
+        <NodeLayout
+          Size="171.2,41.6"
+          Id="Package\Carga Dim_Horario\OLE DB Destination"
+          TopLeft="286.666651003891,305.066664545271" />
+        <EdgeLayout
+          Id="Package\Carga Dim_Horario.Paths[OLE DB Source Output]"
+          TopLeft="369.966650867297,192.399998951356">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,112.666665593915"
+              Start="0,0"
+              End="0,105.166665593915">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,105.166665593915" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Dim_Horario\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Carga Dim_Horario\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
